@@ -25,7 +25,11 @@ module Zhima
 
     def self.decrypt(param_str)
       # strict_decode64 decode64
-      Config.mech_rsa.private_decrypt(Base64.decode64 param_str)
+      encrypted_str = Base64.decode64 URI.decode(param_str)
+      encrypted_str.split('').each_slice(128).inject('') do |str, bytes|
+        str += Config.mech_rsa.private_decrypt bytes.join()
+        str
+      end
     end
   end
 end

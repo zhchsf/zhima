@@ -29,6 +29,12 @@ module Zhima
       parse_response(response.body)
     end
 
+    # 芝麻callback url中的params参数解密方法
+    def self.param_decrypt(params_str)
+      decrypted_str = Param.decrypt(params_str)
+      URI.decode_www_form(URI.decode URI.escape(decrypted_str)).to_h
+    end
+
     def self.url_by(params, sys_options)
       params_value, sign = Param.encrypt(params)
       opts = SYSTEM_OPTIONS.merge(sys_options)
