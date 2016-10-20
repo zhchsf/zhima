@@ -1,5 +1,18 @@
 require "zhima/version"
+require "openssl"
+require "base64"
+require "uri"
 
 module Zhima
-  # Your code goes here...
+  class << self
+    def configure(&block)
+      Config.configure(&block)
+    end
+  end
 end
+
+require_relative "zhima/score"
+require_relative "zhima/param"
+require_relative "zhima/sign"
+require_relative "zhima/util"
+require_relative "zhima/config"
