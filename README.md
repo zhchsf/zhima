@@ -21,8 +21,31 @@ Or install it yourself as:
     $ gem install zhima
 
 ## Usage
+配置(config/initializers/zhima.rb)：
+```ruby
+Zhima.configure do |config|
+  config.app_id = 'xxxxxxx' # 应用id
+  config.private_key = private_key # 自己的私钥
+  config.public_key = public_key # 芝麻给的公钥
+end
+```
 
-TODO: Write usage instructions here
+调用方法如下(请自行查阅芝麻文档的业务参数组织params)：
+```ruby
+# 认证url  业务参数请参考 https://b.zmxy.com.cn/technology/openDoc.htm?id=67
+Zhima::Score.auth_url(params)  # 第二个参数可hash传入芝麻需要的系统参数，不传亦可（下同，省略）
+
+# 获取芝麻分
+# https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.4&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull#Seq_1
+Zhima::Score.auth_url(params)
+
+# auth_query
+# https://b.zmxy.com.cn/technology/openDoc.htm?id=453
+Zhima::Score.auth_query(params)
+
+# 芝麻callback url中的params参数解密
+Zhima::Score.param_decrypt(params_str)
+```
 
 ## Development
 
@@ -32,7 +55,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/zhima. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/zhchsf/zhima. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
