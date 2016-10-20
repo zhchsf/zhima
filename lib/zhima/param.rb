@@ -6,7 +6,7 @@ module Zhima
     # .slice(:identity_type, :identity_param, :biz_params)
     def self.encrypt(params)
       params = Util.symbolize_hash_keys(params)
-      params.each { |key, value| params[key] = URI.encode(value.to_json) if value.is_a? Hash }
+      params.each { |key, value| params[key] = value.to_json if value.is_a? Hash }
       param_str = Util.to_query(params)
       encrypted_str = param_str.split('').each_slice(117).inject('') do |str, bytes|
         str += encrypt_str(bytes.join())
@@ -14,8 +14,8 @@ module Zhima
       end
 
       [
-        Util.base64_and_uri_encode(encrypted_str), 
-        Util.base64_and_uri_encode(Sign.sign(param_str))
+        Util.base64_encode(encrypted_str), 
+        Util.base64_encode(Sign.sign(param_str))
       ]
     end
 
