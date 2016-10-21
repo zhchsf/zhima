@@ -30,7 +30,7 @@ Zhima.configure do |config|
 end
 ```
 
-调用方法如下(请自行查阅芝麻文档的业务参数组织params)：
+芝麻信用分，调用方法如下(请自行查阅芝麻文档的业务参数组织params)：
 ```ruby
 # 认证url  业务参数请参考 https://b.zmxy.com.cn/technology/openDoc.htm?id=67
 Zhima::Score.auth_url(params)  # 第二个参数可hash传入芝麻需要的系统参数，不传亦可（下同，省略）
@@ -45,6 +45,12 @@ Zhima::Score.auth_query(params)
 
 # 芝麻callback url中的params参数解密
 Zhima::Score.param_decrypt(params_str)
+```
+
+反欺诈信息验证：
+```ruby
+# 参数 https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.ivs.detail.get@1.0@1.2&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull
+Zhima::Ivs.get(params)
 ```
 
 ## Development

@@ -11,8 +11,10 @@ module Zhima
   end
 end
 
+require_relative "zhima/config"
 require_relative "zhima/score"
+require_relative "zhima/ivs"
+require_relative "zhima/request"
 require_relative "zhima/param"
 require_relative "zhima/sign"
 require_relative "zhima/util"
-require_relative "zhima/config"
