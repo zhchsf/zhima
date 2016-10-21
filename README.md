@@ -37,7 +37,7 @@ Zhima::Score.auth_url(params)  # 第二个参数可hash传入芝麻需要的系�
 
 # 获取芝麻分
 # https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.4&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull#Seq_1
-Zhima::Score.auth_url(params)
+Zhima::Score.get(params)
 
 # auth_query
 # https://b.zmxy.com.cn/technology/openDoc.htm?id=453
