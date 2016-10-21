@@ -25,8 +25,8 @@ Or install it yourself as:
 ```ruby
 Zhima.configure do |config|
   config.app_id = 'xxxxxxx' # 应用id
-  config.private_key = private_key # 自己的私钥
-  config.public_key = public_key # 芝麻给的公钥
+  config.private_key = File.read('private_key.pkcs8') # 自己的私钥
+  config.public_key = File.read('public_key.pkcs8') # 芝麻给的公钥
 end
 ```
 
