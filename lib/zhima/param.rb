@@ -1,7 +1,7 @@
 module Zhima
   # 业务参数params加解密
   class Param
-    # {identity_type: 2, identity_param: URI.encode({certNo: '410526198605109070', name: '王智超', certType: 'IDENTITY_CARD'}.to_json), biz_params: URI.encode({auth_code: 'M_APPPC_CERT', channelType: 'apppc'}.to_json)}
+    # {identity_type: 2, identity_param: URI.encode({certNo: 'xxx', name: 'xxx', certType: 'IDENTITY_CARD'}.to_json), biz_params: URI.encode({auth_code: 'M_APPPC_CERT', channelType: 'apppc'}.to_json)}
     # 返回两个参数：加密后的params，及sign
     # .slice(:identity_type, :identity_param, :biz_params)
     def self.encrypt(params)
