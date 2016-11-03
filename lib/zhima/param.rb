@@ -3,7 +3,6 @@ module Zhima
   class Param
     # {identity_type: 2, identity_param: URI.encode({certNo: 'xxx', name: 'xxx', certType: 'IDENTITY_CARD'}.to_json), biz_params: URI.encode({auth_code: 'M_APPPC_CERT', channelType: 'apppc'}.to_json)}
     # 返回两个参数：加密后的params，及sign
-    # .slice(:identity_type, :identity_param, :biz_params)
     def self.encrypt(params)
       params = Util.symbolize_hash_keys(params)
       params.each { |key, value| params[key] = value.to_json if value.is_a? Hash }
