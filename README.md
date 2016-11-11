@@ -33,14 +33,31 @@ end
 芝麻信用分，调用方法如下(请自行查阅芝麻文档的业务参数组织params)：
 ```ruby
 # 认证url  业务参数请参考 https://b.zmxy.com.cn/technology/openDoc.htm?id=67
-Zhima::Score.auth_url(params)  # 第二个参数可hash传入芝麻需要的系统参数，不传亦可（下同，省略）
+params = {
+  identity_type: '2', 
+  identity_param: {certNo: 'idcard_no', name: 'name', certType: 'IDENTITY_CARD'}, 
+  biz_params: {auth_code: 'M_H5', channelType: 'app', state: '100111211'}
+}
+system_options = {charset: 'UTF-8', version: '1.0', channel: 'app'} # 可省略，默认为这些参数
+Zhima::Score.auth_url(params, system_options)  # 第二个参数system_options传入芝麻需要的系统参数，不传亦可（下同，省略）
 
 # 获取芝麻分
 # https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.4&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull#Seq_1
+params = {
+  transaction_id: 'transaction_id', 
+  product_code: "w1010100100000000001", 
+  open_id: 'open_id'
+}
 Zhima::Score.get(params)
 
 # auth_query
 # https://b.zmxy.com.cn/technology/openDoc.htm?id=453
+params = {
+  identity_type: '2', 
+  identity_param: {
+    certNo: 'id_card_no', name: 'name', certType: 'IDENTITY_CARD'
+  }
+}
 Zhima::Score.auth_query(params)
 
 # 芝麻callback url中的params参数解密
