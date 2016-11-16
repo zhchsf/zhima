@@ -45,7 +45,7 @@ Zhima::Score.auth_url(params, system_options)  # 第二个参数system_options�
 # https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.4&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull#Seq_1
 params = {
   transaction_id: 'transaction_id', 
-  product_code: "w1010100100000000001", 
+  product_code: 'w1010100100000000001', 
   open_id: 'open_id'
 }
 Zhima::Score.get(params)

@@ -7,7 +7,8 @@ module Zhima
     end
 
     # TODO
-    def self.verify()
+    def self.verify?(sign, str)
+      Config.mech_rsa.verify(SIGN_METHOD, sign, str.force_encoding("utf-8"))
     end
   end
 end

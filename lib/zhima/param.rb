@@ -7,19 +7,17 @@ module Zhima
       params = Util.symbolize_hash_keys(params)
       params.each { |key, value| params[key] = value.to_json if value.is_a? Hash }
       param_str = Util.to_query(params)
-      encrypted_str = param_str.split('').each_slice(117).inject('') do |str, bytes|
-        str += encrypt_str(bytes.join())
-        str
-      end
-
       [
-        Util.base64_encode(encrypted_str), 
+        Util.base64_encode(rsa_encrypt(param_str)), 
         Util.base64_encode(Sign.sign(param_str))
       ]
     end
 
-    def self.encrypt_str(str)
-      Config.zm_rsa.public_encrypt str
+    def self.rsa_encrypt(str)
+      str.split('').each_slice(117).inject('') do |s, bytes|
+        s += Config.zm_rsa.public_encrypt(bytes.join())
+        s
+      end
     end
 
     def self.decrypt(param_str)
