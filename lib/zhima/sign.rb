@@ -6,9 +6,9 @@ module Zhima
       Config.mech_rsa.sign(SIGN_METHOD, str)
     end
 
-    # TODO
     def self.verify?(sign, str)
-      Config.mech_rsa.verify(SIGN_METHOD, sign, str.force_encoding("utf-8"))
+      decode64_sign = Base64.strict_decode64(sign)
+      Config.zm_rsa.verify(SIGN_METHOD, decode64_sign, str.force_encoding("utf-8"))
     end
   end
 end

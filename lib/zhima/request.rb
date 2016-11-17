@@ -25,12 +25,17 @@ module Zhima
 
     private
     # 芝麻返回的json数据解析，结果为真正的业务参数
-    # TODO verify sign
     def parse_response(response_str)
       response_hash = JSON.parse(response_str)
-      biz_response = response_hash["biz_response"]
+      biz_response_sign = response_hash['biz_response_sign']
+      biz_response = response_hash['biz_response']
       biz_response = Param.decrypt(biz_response) if response_hash["encrypted"]
-      JSON.parse(biz_response)
+
+      if Sign.verify?(biz_response_sign, biz_response)
+        JSON.parse(biz_response)
+      else
+        {error: true, error_msg: 'sign解签错误'}
+      end
     end
   end
 end

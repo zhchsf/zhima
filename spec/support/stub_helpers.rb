@@ -1,7 +1,7 @@
 module StubHelpers
   def stub_zhima_request(biz_response)
     encrypted_biz_param = Zhima::Util.base64_encode(Zhima::Param.rsa_encrypt(biz_response.to_json))
-    sign = Zhima::Util.base64_encode(Zhima::Sign.sign(encrypted_biz_param))
+    sign = Zhima::Util.base64_encode(Zhima::Sign.sign(biz_response.to_json))
 
     mock_response = {
       encrypted: true,
