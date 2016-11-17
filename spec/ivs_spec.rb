@@ -19,7 +19,7 @@ describe Zhima::Ivs do
         ivs_score: 99
       }
       stub_zhima_request(biz_response)
-      @result = Zhima::Score.get(params)
+      @result = Zhima::Ivs.get(params)
     end
 
     it "success" do
@@ -54,7 +54,7 @@ describe Zhima::Ivs do
         }.to_json
       }
       stub_zhima_request_without_encrypt(mock_response.to_json)
-      @result = Zhima::Score.get(params)
+      @result = Zhima::Ivs.get(params)
     end
 
     it "success false" do
@@ -63,6 +63,23 @@ describe Zhima::Ivs do
 
     it "return error_code" do
       expect(@result['error_code']).to eq 'ZMCREDIT.transaction_id_repeat'
+    end
+  end
+
+  context "sign解签失败" do
+    before(:all) do
+      @params = {product_code: 'w1010100000000000103'}
+      mock_response = {
+        encrypted: true,
+        sign: {signSource: 'zhima_sign_value',  signResult: 'xxx'},
+        biz_response_sign: Zhima::Util.base64_encode("test"),
+        biz_response: Zhima::Util.base64_encode(Zhima::Param.rsa_encrypt('test'))
+      }
+      stub_zhima_request_without_encrypt(mock_response.to_json)
+    end
+
+    it "raise error" do
+      expect{ Zhima::Ivs.get(@params) }.to raise_error(Zhima::VerifySignError)
     end
   end
 end
