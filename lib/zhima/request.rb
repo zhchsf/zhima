@@ -31,10 +31,10 @@ module Zhima
       biz_response = response_hash['biz_response']
       biz_response = Param.decrypt(biz_response) if response_hash["encrypted"]
 
-      if Sign.verify?(biz_response_sign, biz_response)
-        JSON.parse(biz_response)
-      else
+      if response_hash["encrypted"] && !Sign.verify?(biz_response_sign, biz_response)
         {error: true, error_msg: 'sign解签错误'}
+      else
+        JSON.parse(biz_response)
       end
     end
   end

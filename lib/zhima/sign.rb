@@ -7,7 +7,7 @@ module Zhima
     end
 
     def self.verify?(sign, str)
-      decode64_sign = Base64.strict_decode64(sign)
+      decode64_sign = Base64.strict_decode64(sign.to_s)
       Config.zm_rsa.verify(SIGN_METHOD, decode64_sign, str.force_encoding("utf-8"))
     end
   end
