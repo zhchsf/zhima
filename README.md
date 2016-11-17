@@ -76,6 +76,14 @@ params = {
   mobile: '18888888888'
 }
 Zhima::Ivs.get(params)
+
+行业关注名单2.0
+params = {
+  product_code: 'w1010100100000000022',
+  transaction_id: 'transaction_id',
+  open_id: '268800000000000000000000'
+}
+Zhima::WatchList.get(params)
 ```
 
 ## Development
