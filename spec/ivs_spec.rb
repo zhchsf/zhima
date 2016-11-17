@@ -25,11 +25,11 @@ describe Zhima::Ivs do
     expect(@result['success']).to eq true
   end
 
-  it "get ivs_detail" do
+  it "ivs_detail has 3" do
     expect(@result['ivs_detail'].count).to eq 3
   end
 
-  it "get ivs_score" do
+  it "ivs_score is 99" do
     expect(@result['ivs_score']).to eq 99
   end
 end
