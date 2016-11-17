@@ -10,6 +10,10 @@ module StubHelpers
       biz_response: encrypted_biz_param
     }.to_json
 
+    stub_zhima_request_without_encrypt(mock_response)
+  end
+
+  def stub_zhima_request_without_encrypt(mock_response)
     stub_request(:any, /https:\/\/zmopenapi.zmxy.com.cn\/openapi.do.*/).to_return(
       :status => 200, 
       :body => mock_response, 
