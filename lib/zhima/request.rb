@@ -24,6 +24,7 @@ module Zhima
     end
 
     private
+
     # 芝麻返回的json数据解析，结果为真正的业务参数
     def parse_response(response_str)
       response_hash = JSON.parse(response_str)

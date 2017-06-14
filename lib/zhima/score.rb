@@ -2,9 +2,9 @@ require "rest-client"
 
 module Zhima
   class Score
-    AUTHORIZE_METHOD = 'zhima.auth.info.authorize'
-    SCORE_METHOD = 'zhima.credit.score.get'
-    AUTH_QUERY_METHOD = 'zhima.auth.info.authquery'
+    AUTHORIZE_METHOD = 'zhima.auth.info.authorize'.freeze
+    SCORE_METHOD = 'zhima.credit.score.get'.freeze
+    AUTH_QUERY_METHOD = 'zhima.auth.info.authquery'.freeze
 
     # params参数 请参考 https://b.zmxy.com.cn/technology/openDoc.htm?id=67
     # 系统参数 SYSTEM_OPTIONS，可自己传入，一般只需要配置channel参数（与auth_code不对应芝麻信用会报错）

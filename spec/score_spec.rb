@@ -2,8 +2,8 @@ describe Zhima::Score do
   describe "#auth_url" do
     let(:params) {
       {
-        identity_type: '2', 
-        identity_param: {certNo: 'idcard_no', name: 'name', certType: 'IDENTITY_CARD'}, 
+        identity_type: '2',
+        identity_param: {certNo: 'idcard_no', name: 'name', certType: 'IDENTITY_CARD'},
         biz_params: {auth_code: 'M_H5', channelType: 'app', state: '100111211'}
       }
     }
@@ -17,8 +17,8 @@ describe Zhima::Score do
   describe "score by openid" do
     before(:all) do
       params = {
-        transaction_id: 'transaction_id', 
-        product_code: 'w1010100100000000001', 
+        transaction_id: 'transaction_id',
+        product_code: 'w1010100100000000001',
         open_id: 'open_id'
       }
       biz_response = {success: true, biz_no: 'ZM201611163000000193200377138988', zm_score: '802'}
@@ -38,7 +38,7 @@ describe Zhima::Score do
   describe "#auth_query" do
     before(:all) do
       params = {
-        identity_type: '2', 
+        identity_type: '2',
         identity_param: {
           certNo: 'id_card_no', name: 'name', certType: 'IDENTITY_CARD'
         }
@@ -60,7 +60,7 @@ describe Zhima::Score do
   describe "#param_decrypt" do
     before(:all) do
       expect_response = {success: true, open_id: 'openid'}
-      params_str, sign = Zhima::Param.encrypt(expect_response)
+      params_str, _ = Zhima::Param.encrypt(expect_response)
       @result = Zhima::Score.param_decrypt(params_str)
     end
 

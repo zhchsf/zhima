@@ -2,6 +2,7 @@ require "zhima/version"
 require "openssl"
 require "base64"
 require "uri"
+require "json"
 
 module Zhima
   class << self
@@ -15,6 +16,7 @@ require_relative "zhima/config"
 require_relative "zhima/score"
 require_relative "zhima/ivs"
 require_relative "zhima/watch_list"
+require_relative "zhima/antifraud"
 require_relative "zhima/request"
 require_relative "zhima/param"
 require_relative "zhima/sign"

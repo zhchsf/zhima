@@ -86,6 +86,56 @@ params = {
 Zhima::WatchList.get(params)
 ```
 
+申请欺诈评分
+```ruby
+# 参数 https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.antifraud.score.get@1.0@1.1&relType=API_DOC&LEFT_MENU_MODE=null&view_mode=null
+params = {
+  product_code: 'w1010100003000001100',
+  transaction_id: 'transaction_id',
+  cert_type: 'IDENTITY_CARD',
+  cert_no: '证件号',
+  name: '牛德华',
+  mobile: '13899999999',
+  email: 'xxx@xxx.com',
+  bank_card: '8888',
+  address: '中南海1号楼'
+}
+Zhima::Antifraud.get(params)
+```
+
+欺诈信息验证3.0
+```ruby
+# 参数 https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.antifraud.verify@1.0@1.1&relType=API_DOC&LEFT_MENU_MODE=null&view_mode=null
+params = {
+  product_code: 'w1010100000000002859',
+  transaction_id: 'transaction_id',
+  cert_type: 'IDENTITY_CARD',
+  cert_no: '证件号',
+  name: '牛德华',
+  mobile: '13899999999',
+  email: 'xxx@xxx.com',
+  bank_card: '8888',
+  address: '中南海1号楼'
+}
+Zhima::Antifraud.verify(params)
+```
+
+欺诈关注清单
+```ruby
+# 参数 https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.antifraud.risk.list@1.0@1.0&relType=API_DOC&LEFT_MENU_MODE=null&view_mode=null
+params = {
+  product_code: 'w1010100003000001283',
+  transaction_id: 'transaction_id',
+  cert_type: 'IDENTITY_CARD',
+  cert_no: '证件号',
+  name: '牛德华',
+  mobile: '13899999999',
+  email: 'xxx@xxx.com',
+  bank_card: '8888',
+  address: '中南海1号楼'
+}
+Zhima::Antifraud.risk_list(params)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
