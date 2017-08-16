@@ -21,6 +21,8 @@ Or install it yourself as:
 ## Usage
 配置(config/initializers/zhima.rb)：
 ```ruby
+# 密钥生成可查看芝麻官方文档：https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=RSA_INFO_DOC
+
 Zhima.configure do |config|
   config.app_id = 'xxxxxxx' # 应用id
   config.private_key = File.read('private_key.pkcs8') # 自己的私钥
