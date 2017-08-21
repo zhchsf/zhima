@@ -32,19 +32,29 @@ end
 
 芝麻信用分，调用方法如下(请自行查阅芝麻文档的业务参数组织params)：
 ```ruby
-# 认证url  业务参数请参考 https://b.zmxy.com.cn/technology/openDoc.htm?id=67
+# 使用身份证认证url  业务参数请参考 https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.auth.info.authorize@1.0@1.3
 params = {
-  identity_type: '2', 
-  identity_param: {certNo: 'idcard_no', name: 'name', certType: 'IDENTITY_CARD'}, 
+  identity_type: '2',
+  identity_param: {certNo: 'idcard_no', name: 'name', certType: 'IDENTITY_CARD'},
   biz_params: {auth_code: 'M_H5', channelType: 'app', state: '100111211'}
 }
 system_options = {charset: 'UTF-8', version: '1.0', channel: 'app'} # 可省略，默认为这些参数
 Zhima::Score.auth_url(params, system_options)  # 第二个参数system_options传入芝麻需要的系统参数，不传亦可（下同，省略）
+# 认证url  业务参数请参考 https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.auth.info.authorize@1.0@1.3
+def auth_url_mobile(mobile,state)
+  params = {
+    identity_type: '1',
+    identity_param: {mobileNo: mobile},#mobile 是用户的手机号
+    biz_params: {auth_code: 'M_H5', channelType: 'app', state: state} #state是商户自定义的数据,页面授权接口会原样把这个数据返回个商户
+  }
+  system_options = {charset: 'UTF-8', version: '1.0', channel: 'app'}
+  url = Zhima::Score.auth_url(params, system_options)  
+end
 
 # 获取芝麻分
 # https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.credit.score.get@1.0@1.4&relType=API_DOC&type=API_INFO_DOC&LEFT_MENU_MODEnull#Seq_1
 params = {
-  transaction_id: 'transaction_id', 
+  transaction_id: 'transaction_id',
   product_code: 'w1010100100000000001',
   open_id: 'open_id'
 }
@@ -53,7 +63,7 @@ Zhima::Score.get(params)
 # auth_query
 # https://b.zmxy.com.cn/technology/openDoc.htm?id=453
 params = {
-  identity_type: '2', 
+  identity_type: '2',
   identity_param: {
     certNo: 'id_card_no', name: 'name', certType: 'IDENTITY_CARD'
   }
@@ -153,4 +163,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/zhchsf
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
