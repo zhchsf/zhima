@@ -40,6 +40,7 @@ params = {
 }
 system_options = {charset: 'UTF-8', version: '1.0', channel: 'app'} # 可省略，默认为这些参数
 Zhima::Score.auth_url(params, system_options)  # 第二个参数system_options传入芝麻需要的系统参数，不传亦可（下同，省略）
+
 # 使用支付宝绑定手机号认证url  业务参数请参考 https://b.zmxy.com.cn/technology/openDoc.htm?relInfo=zhima.auth.info.authorize@1.0@1.3
 def auth_url_mobile(mobile,state)
   params = {
